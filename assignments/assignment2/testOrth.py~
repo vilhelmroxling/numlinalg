@@ -102,7 +102,7 @@ if False:
     print norms, "\n\n", i_divs, "\n\n", eigs, "\n\n", dets
 
 if False:
-    n = 2000
+    n = 500
     A = np.random.rand(n+10, n)
     o = Orthogonalization(A.T)
     t0 = time.time()
@@ -113,21 +113,21 @@ if False:
     print "scipy's qr:\n", time.time()-t0
     
 
-if False:
+if True:
     A = np.random.rand(5, 8)
     o = Orthogonalization(A)
     Q, R = o.givens(both = True)
     print np.round(R, decimals = 3), "\n\n", np.round(np.dot(Q.T,Q), decimals = 5), "\n\n", np.round(o.A.T - np.dot(Q, R), decimals = 8)     
 
 if True:
-    n = 2000
-    A = np.random.rand(n, n)
+    n = 1000
+    A = np.random.rand(n+10, n)
     o = Orthogonalization(A.T)
     t0 = time.time()
-    Q, R = o.householder(both = True)
+    Q, R = o.householder(both = False)
     print "householder:\n", time.time()-t0, "\n"
     t0 = time.time()
-    Q, R = o.givens(both = True)
+    Q, R = o.givens(both = False)
     print "givens:\n", time.time()-t0
 
 if False:

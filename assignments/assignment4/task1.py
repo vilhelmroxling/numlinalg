@@ -28,7 +28,7 @@ if(True):
             #nA= np.linalg.norm(A,ord=2)
             u,s,v = np.linalg.svd(A)
             
-            plot(slamb, '*')
+            plot(s[0], '*')
             
 #Triangular matrices      
 if(False):
@@ -43,3 +43,5 @@ if(False):
             u,s,v = np.linalg.svd(A)
             
             plot(s[-1], '*')
+
+show('all')

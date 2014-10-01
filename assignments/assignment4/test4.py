@@ -1,0 +1,36 @@
+from scipy import *
+from scipy.linalg import *
+from numpy import *
+from numpy.linalg import *
+
+n = 10
+
+A = hilbert(n)
+Ainv = invhilbert(n)
+# A = np.random.rand(n,n)
+# Ainv = np.linalg.inv(A)
+
+u, s, v = svd(A)
+
+alpha = 1
+beta = 1e-6
+
+b = alpha*u[:,0]
+db = beta*u[:,-1]
+
+x = dot(Ainv, b)
+xh = dot(Ainv, b + db)
+dx = xh-x
+
+k1 = norm(Ainv, ord=2)*norm(b)/norm(x)
+k2 = norm(Ainv, ord=2)*norm(A, ord=2)
+k3 = s[0]/s[-1]
+k4 = cond(A, p=2)
+kv1 = norm(dx)/norm(x)
+kv2 = norm(db)/norm(b)
+
+print k1
+print k2
+print k3
+print k4
+print kv1/kv2

@@ -12,10 +12,10 @@ from scipy import linalg
 from matplotlib.pyplot import *
 import numpy as np
 
-beta = 1
+beta = 1e-5
 alpha = 1
-size = 20
-#
+size = 50
+
 #A = random.rand(size,size)
 #Ainv = np.linalg.inv(A)
 
@@ -24,14 +24,14 @@ Ainv = linalg.invhilbert(size)
 
 u,s,v = np.linalg.svd(A)
 
-
 b = u[:,0]*alpha
 db = u[:,-1]*beta
 
-x = np.linalg.solve(A,b)
-xh = np.linalg.solve(A,b + db)
-
-
+#x = np.linalg.solve(A,b)
+#xh = np.linalg.solve(A,b + db)
+x = np.dot(Ainv,b)
+xh = np.dot(Ainv,b+db)
+#dx = np.dot(Ainv, db)
 
 dx = xh-x
 

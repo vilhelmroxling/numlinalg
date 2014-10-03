@@ -17,7 +17,21 @@ def p(x):
 
 def p_(x):
     return (x-2)**9
+    
+def la(x):
+    return x**9 - 9e1*x**8 + 36e2*x**7 - 84e3*x**6 + 126e4*x**5 - 126e5*x**4 + 84e6*x**3 - 36e7*x**2 + 9e8*x - 1e9
+    
+def la_(x):
+    return (x-10)**9
 
-x = linspace(1.92, 2.08, 161)
+xa = linspace(9.92, 10.08, 161)
 
-plot(x,p_(x))
+plot(xa, la(xa))
+figure()
+plot(xa, la_(xa))
+
+#x = linspace(1.92, 2.08, 161)
+#
+#plot(x,p(x))
+#figure()
+#plot(x, p_(x))

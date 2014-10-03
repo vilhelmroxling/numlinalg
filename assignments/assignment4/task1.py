@@ -12,34 +12,35 @@ from matplotlib.pyplot import *
 
 close("all")
 mlist = []
-mlist.append(8)
+mlist.append(2)
 
 #Full rank matrices
-for i in range(1,6):
+for i in range(1,8):
     mlist.append(mlist[i-1]*2)
 
-if(True):
-    for m in mlist:
-        figure()
-        for n in range(0,100):
-            A = np.random.randn(m,m)/np.sqrt(m)
-            lamb = np.linalg.eigvals(A)
-            slamb = sort(lamb)
-            #nA= np.linalg.norm(A,ord=2)
-            u,s,v = np.linalg.svd(A)
-            
-            plot(slamb, '*')
-            
-#Triangular matrices      
 if(False):
     for m in mlist:
         figure()
-        for n in range(0,100):
+        for n in range(0,500):
+            A = np.random.randn(m,m)/np.sqrt(m)
+            lamb = np.linalg.eigvals(A)
+            slamb = sort(lamb)
+            nA= np.linalg.norm(A,ord=2)
+            u,s,v = np.linalg.svd(A)
+            
+            plot(s[-1], '*')
+            
+print np.linalg.norm(A, ord=2)            
+#Triangular matrices      
+if(True):
+    for m in mlist:
+        figure()
+        for n in range(0,200):
             A = np.random.randn(m,m)/np.sqrt(m)
             A = np.triu(A)
             lamb = np.linalg.eigvals(A)
-            #slamb = sort(lamb)
-            #nA= np.linalg.norm(A,ord=2)
+            slamb = sort(lamb)
+            nA= np.linalg.norm(A,ord=2)
             u,s,v = np.linalg.svd(A)
             
             plot(s[-1], '*')

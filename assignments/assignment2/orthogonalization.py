@@ -126,4 +126,4 @@ class Orthogonalization:
             return R.T
 
         return Q.T, R.T
-                
+            

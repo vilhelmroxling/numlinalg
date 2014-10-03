@@ -35,3 +35,11 @@ plot(xa, la_(xa))
 #plot(x,p(x))
 #figure()
 #plot(x, p_(x))
+
+
+x = linspace(1.92, 2.08, 161)
+
+plot(x,p(x))
+figure()
+plot(x,p_(x))
+show('all')

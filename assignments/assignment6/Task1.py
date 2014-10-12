@@ -46,10 +46,15 @@ def QReig(A, count):
             break
     return A, count
 
+n = 5
 
-A = random.rand(5, 5)
-#A=eye(5)[-array(range(1,6))]
-A = (A+A.T)/2
+# A = random.rand(n, n)
+# A = (A+A.T)/2
+
+v = random.rand(n)
+v = v/nla.norm(v)
+A = eye(n) - 2*outer(v, v)
+
 D, counts = QReig(A, 0)
 eigs = sla.eig(A)[0]
 #print D, "\n", np.round(D, decimals = 3), "\n", eigs, "\n", nla.norm(sort(eigs)-sort(diag(D))), "\n", counts

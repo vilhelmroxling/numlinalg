@@ -1,0 +1,8 @@
+from __future__ import division
+from scipy import *
+from scipy import linalg as sla
+from numpy import *
+from numpy import linalg as nla
+
+def QReig(A):
+    

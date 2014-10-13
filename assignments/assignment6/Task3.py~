@@ -1,0 +1,7 @@
+from __future__ import division
+from scipy import *
+from scipy import linalg as sla
+from numpy import *
+import numpy as np
+from numpy import linalg as nla
+

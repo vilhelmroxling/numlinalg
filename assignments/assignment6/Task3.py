@@ -5,6 +5,7 @@ from numpy import *
 import numpy as np
 from numpy import linalg as nla
 
+
 def bisection(A):
     """
     A symmettric tridiagonal matrix.
@@ -50,23 +51,40 @@ def counteiginterval(A, a, b):
     acounts = p(A, a)
     return bcounts - acounts
 
-def findeig(A, a, b, totcounts, eigs = [], tol = 1e-3):
-    if b-a < tol:
-        eigs.append([a, b])
+def findeig(A, a, b, totcounts, tol = 1e-6):
+    #print "a: ",a, " b: ", b, "\n\n" 
+    if abs(b-a) < tol:
+        eigs.append([a,b])
+        return
     rightcounts = counteiginterval(A, (a+b)/2, b)
+#    leftcounts = counteiginterval(A,a, (a+b)/2)
     leftcounts = totcounts - rightcounts
-    if rightcounts > 0:
-        findeig(A, (a+b)/2, b, rightcounts, eigs)
-    if leftcounts > 0:
-        findeig(A, a, (a+b)/2, leftcounts, eigs)
+    print leftcounts, rightcounts , "\n"
+    #print "leftcount: ", leftcounts, " rightcount: ", rightcounts, "\n\n"
+    if not rightcounts == 0:
+        findeig(A, (a+b)/2, b, rightcounts)
+    if not leftcounts == 0:
+        findeig(A, a, (a+b)/2, leftcounts)
 
-n = 10
+def findeigs(A, a = 0, b = 0):
+    if a-b == 0:
+        b = A.shape[0]
+        a = -b
+    totcounter = counteiginterval(A, a, b)
+    findeig(A,a,b,500)
+n = 500
 a, b = 0, 1
-
+eigs = []
+   
 A = random.rand(n, n)
 A = (A + A.T)/2
 A = sla.hessenberg(A)
-eigs = []
-findeig(A, -1, 1, counteiginterval(A, -1, 1), eigs)
-print eigs
-print sla.eig(A)[0]
+
+findeigs(A)
+nbrfound = eigs.__len__()
+shouldfound = sla.eig(A)[0].__len__()
+
+print sort(eigs)
+print sort(sla.eig(A)[0]*-1)*-1
+print "Found: ",nbrfound, " Exists: ", shouldfound
+
